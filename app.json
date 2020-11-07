@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/log"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#d43c33",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "音乐台"
+  },
+  "sitemapLocation": "sitemap54.json"
+}
