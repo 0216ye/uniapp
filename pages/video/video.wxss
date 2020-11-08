@@ -1,0 +1,39 @@
+/*头部搜索区域*/
+.header{
+    display: flex;
+    padding: 10rpx;
+}
+.header image{
+    width: 60rpx;
+    height: 60rpx;
+}
+.header .search{
+    font-size: 24rpx;
+    color: #d43c33;
+    border: 1rpx solid #e6dada;
+    border-radius: 10rpx;
+    /*flex:1,代表可以伸缩，父元素宽度自动为100%*/
+    flex: 1;
+    margin: 0 20rpx;
+    text-align: center;
+    line-height: 60rpx;
+}
+
+/*导航区域*/
+.scrollNav{
+    width: 96%;
+    display: flex;
+    padding: 0 10rpx;
+}
+.scrollNav .navItem{
+    margin:0 20rpx;
+    white-space: nowrap;
+}
+.scrollNav .navItem .content{
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 28rpx;
+}
+.scrollNav .navItem .active{
+    border-bottom: 1px solid #d43c33;
+}

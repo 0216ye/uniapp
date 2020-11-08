@@ -6,15 +6,14 @@ import config from './config.js'
 export default (url,data={},method='GET')=>{
     return new Promise((resolve,reject) =>{
         wx.request({
-            url: config.host+url,
+            url: config.host+url,//本地调试
+            // url:config.penetrateHost+url,//真机调试
             data,
             method,
             success: (res) => {
-              console.log('请求成功:',res)
               resolve(res.data)
             },
             fail: (err) =>{
-              console.log('请求失败:',err)
               reject(err)
             }
           })

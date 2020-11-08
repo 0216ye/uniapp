@@ -1,9 +1,0 @@
-<view class="container">
-  <image wx:if="{{userInfo.avatarUrl}}" class="avatarUrl" src="{{userInfo.avatarUrl}}"></image>
-  <!--open-type="getUserInfo" 获取用户信息，可以从bindgetuserinfo回调中获取到用户信息 -->
-  <button wx:else bindgetuserinfo="getUserInfo" open-type="getUserInfo">获取用户信息</button>
-  <text class="userName" bindtap="toLogs">{{userInfo.nickName}}</text>
-  <view class="goStudy" catchtap="handleParent">
-    <text catchtap="handleChild">Hello world</text>
-  </view>
-</view>
