@@ -36,25 +36,11 @@
 .recommendContainer{
   padding: 22rpx;
 }
-.recommendContainer .header{
-  margin-bottom: 10rpx;
-}
-.recommendContainer .header .title{
-  font-size: 32rpx;
-  color: #666;
-  display: block;
-  padding: 20rpx 0rpx;
-}
-.recommendContainer .header .heder-right{
-  border: 1px solid black;
-  border-radius: 20rpx;
-  text-align: center;
-  font-size: 22rpx;
-  padding: 5rpx 10rpx;
-  float: right;
-}
+
+/*推荐歌曲内容区域*/
 .recommendScroll{
   display: flex;
+  height: 300rpx;
 }
 .recommendScroll .scrollItem{
   width: 200rpx;
@@ -79,4 +65,43 @@
   display: -webkit-box;
   -webkit-box-orient: vertical; /*设置对其模式*/
   -webkit-line-clamp: 2; /*设置最大函数，超出则...*/
+}
+
+/*排行榜区域*/
+.topList{
+  padding:  0 22rpx 22rpx 22rpx;
+}
+/*排行榜内容区*/
+.topListMusic{
+  height: 400rpx;
+  font-size: 26rpx;
+}
+.topListMusic .swiperItem{
+  width: 96%;
+  background-color: #fbfbfb;
+}
+.topListMusic .title{
+  display: block;
+  padding: 10rpx 0rpx;
+}
+.topListMusic .musicItem{
+  display: flex;
+  height: 100rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+.topListMusic .musicItem image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+}
+.topListMusic .musicItem .count{
+  width: 100rpx;
+}
+.topListMusic .musicItem .musicItemName{
+  max-width: 400rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

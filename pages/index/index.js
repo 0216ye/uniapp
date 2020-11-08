@@ -6,7 +6,8 @@ Page({
   data: {
     interval:2000,//控制轮播切换的时间
     bannerList:[],//存放轮播图的数据
-    recommendList:[]
+    recommendList:[], //推荐歌曲数据
+    topList: [] //排行榜数据
   },
 
   /**
@@ -16,6 +17,17 @@ Page({
     //发送请求，获取banner轮播图信息&歌曲添加信息,使用await等待Promise返回成功的状态数据
     let bannerList = await request('/banner',{type:2})
     let recommendList = await request('/personalized',{limit:18})
+    let count = 0
+    let resultArr = []
+    while (count < 5) {
+      let topListData =   await request('/top/list',{idx:count++})
+      // 获取单个排行榜所需的数据
+      let topListItem = {name:topListData.playlist.name,tracks:topListData.playlist.tracks.slice(0,3)}
+      resultArr.push(topListItem)
+      this.setData({
+        topList:resultArr
+      })
+    }
     this.setData({
       bannerList:bannerList.banners,
       recommendList:recommendList.result
