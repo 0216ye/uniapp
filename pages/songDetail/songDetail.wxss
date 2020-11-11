@@ -1,0 +1,95 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background: rgba(76, 75, 75, 0.692);
+}
+/*底座*/
+.container .circle{
+    position: relative;
+    z-index: 100;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    background: #DBDBDB;
+    margin: 10rpx 0;
+}
+/*摇杆*/
+.container .needle{
+    position: relative;
+    z-index: 99;
+    top: -40rpx;
+    left: 60rpx;
+    width: 192rpx;
+    height: 274rpx;
+    /*将旋转中心点设为底座的中心*/
+    transform-origin: 40rpx 0;
+    transform: rotate(-20deg);
+    transition: transform 1s;
+}
+/*控制摇杆动画的类*/
+.container .needleRotate{
+    transform: rotate(0deg);
+}
+/*磁盘区域*/
+.discContainer{
+    position: relative;
+    top: -170rpx;
+    width: 598rpx;
+    height: 598rpx;
+}
+.discAnimation{
+    animation: disc 6s linear infinite;
+    /*动画延迟一秒后执行*/
+    animation-delay: 1s;
+}
+@keyframes disc{
+    /*起始帧*/
+    form{
+        transform: rotate(0deg);
+    }
+    /*结束帧*/
+    to{
+        transform: rotate(360deg);
+    }
+}
+.discContainer .disc{
+    width: 100%;
+    height: 100%;
+}
+.discContainer .bgImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 370rpx;
+    height: 370rpx;
+    border-radius: 50%;
+}
+
+/*底部播放区域*/
+.musicControl{
+    position: absolute;
+    bottom: 40rpx;
+    left: 0;
+    border-top: 1rpx solid #fff;
+    width: 100%;
+    display: flex;    
+}
+.musicControl text{
+    width: 20%;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 50rpx;
+}
+.musicControl text.big{
+    font-size: 80rpx;
+}
+
+
+

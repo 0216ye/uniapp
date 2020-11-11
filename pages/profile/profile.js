@@ -30,15 +30,18 @@ Page({
   async recenPlayMusic (userId){
     let recenPlayMusicData = await request('/user/record',{uid:userId,type:0})
     let index = 0
-    //将获取到是数据截取15个，并在每个item中添加一个唯一ID
-    let recenPlayMusicAll = recenPlayMusicData.allData.slice(0,16).map(item => {
-      item.id = index++
-      return item
-    })
-    //将数据保存到data中
-    this.setData({
-      recenPlayMusicAll
-    }) 
+    if ( recenPlayMusicData ){
+      //将获取到是数据截取15个，并在每个item中添加一个唯一ID
+      let recenPlayMusicAll = recenPlayMusicData.allData.slice(0,16).map(item => {
+        item.id = index++
+        return item
+      })
+      //将数据保存到data中
+      this.setData({
+        recenPlayMusicAll
+      })
+    }
+
   },
 
   //监听手指刚放到屏幕上

@@ -1,0 +1,81 @@
+/*头部图像区域*/
+.recommentContainer .headerContainer{
+    position: relative;
+    width: 100%;
+    height: 300rpx;
+}
+.headerContainer image{
+    width: 100%;
+    height: 100%;
+}
+.headerContainer .date{
+    position: absolute;
+    /*在父元素中居中*/
+    top: 50%;
+    left: 50%;
+    /*将左&上拉自身的一半,*/
+    margin-left: -150rpx;
+    margin-top: -40rpx;
+    width: 300rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    color: white;
+}
+.headerContainer .date .day{
+    font-size: 40rpx;
+}
+
+/*音乐列表区*/
+.scrollContainer{
+    position: relative;
+
+    margin-top: -15rpx;
+    padding: 0 20rpx;
+    background-color: #fff;
+    border-radius: 20rpx;
+}
+/*列表头部*/
+.scrollHeader text{
+    height: 80rpx;
+    line-height: 80rpx;
+}
+.scrollHeader .textRigth{
+    float: right;
+}
+/*内容区*/
+.scroll{
+    height: calc(100vh - 380rpx);
+}
+.scrollItem{
+    position: relative;
+    margin-bottom: 20rpx;
+    display: flex;
+}
+.scrollItem image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 8rpx;
+}
+.scrollItem .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+    font-size: 24rpx;
+}
+.scrollItem .info text{
+    max-width: 400rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.scrollItem .iconfont{
+    position: absolute;
+    right: 0rpx;
+    width: 100rpx;
+    height: 80rpx;
+    text-align: right;
+    line-height: 80rpx;
+}
