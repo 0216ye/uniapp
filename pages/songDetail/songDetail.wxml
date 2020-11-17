@@ -1,5 +1,5 @@
 <view class="container">
-    <view class="author">author</view>
+    <view class="author">{{song.name}}</view>
     <!--用于放置底座-->
     <view class="circle"></view>
     <!--{{isPlay ? 'needleRotate':''}}:动态类，或者按下面的写法也可以-->
@@ -7,15 +7,19 @@
     <!-- 动态类为动画-->
     <view class="discContainer {{isPlay && 'discAnimation'}}">
         <image class="disc" src="/static/images/song/disc.png" />
-        <image class="bgImg" src="/static/images/nvsheng.jpg" />
+        <image class="bgImg" src="{{song.al.picUrl}}" />
     </view>
 
      <!-- 底部控制播放区域 -->
     <view class="musicControl">
         <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
-        <text class="iconfont icon-shangyishou"></text>
+
+        <text class="iconfont icon-shangyishou" data-set="pre" bindtap="handleSwitchMusic"></text>
+
         <text class="iconfont {{isPlay?'icon-zanting': 'icon-bofang'}} big" bindtap="handleMusicPlay"></text>
-        <text class="iconfont icon-next" ></text>
+
+        <text class="iconfont icon-next"  data-set="next" bindtap="handleSwitchMusic"></text>
+
         <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
     </view>
 </view>

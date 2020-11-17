@@ -1,3 +1,5 @@
+import PubSub from 'pubsub-js'
+
 import request from '../../utils/request'
 Page({
 
@@ -8,6 +10,7 @@ Page({
     day:'',//页面显示的日期号数
     month:'',//页面显示的月份数
     recommendSongList:[],//保存每日推荐歌曲数据
+    index:0 ,//保存的索引
   },
 
   /**
@@ -15,6 +18,7 @@ Page({
    */
   onLoad: function (options) {
     let userInfo = wx.getStorageSync('userInfo')
+   
     //用户没有登录,跳转到登录页面
     if ( !userInfo ){
       wx.showToast({
@@ -34,6 +38,25 @@ Page({
     })
     //获取列表数据
     this.getrecommendSong()
+    //消息的订阅
+    PubSub.subscribe('switchMusic',(msg,type) => {
+      let {recommendSongList,index} = this.data
+      if ( type == 'pre'){ //上一首
+        //循环播放
+        (index == 0) && (index = recommendSongList.length)
+        index -= 1
+      }else{ //下一首
+        (index == recommendSongList.length-1) && (index = -1)
+        index += 1
+      }
+      //更新状态
+      this.setData({
+        index
+      })
+      let musicId = recommendSongList[index].id
+      //消息的发布，将音乐Id传回给songdetail页面
+      PubSub.publish('musicId',musicId)
+    })
   },  
   
   /**
@@ -49,7 +72,20 @@ Page({
 
   },
 
+  //点击每条歌曲数据时进行跳转
+  handleSongDeatail (event){
+    let song  = event.currentTarget.dataset.set
+    //获取标识id
+    let index  = event.currentTarget.dataset.index
+    this.setData({
+      index
+    })
 
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?id='+song.id,
+    });
+      
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
