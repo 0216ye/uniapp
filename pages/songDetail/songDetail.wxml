@@ -10,9 +10,23 @@
         <image class="bgImg" src="{{song.al.picUrl}}" />
     </view>
 
+    <!--进度条-->
+    <view class="progressBar">
+        <view>{{currentTiem}}</view>
+        <!--总进度条 -->
+        <view class="progressContainer">
+            <!--当前进度条 -->
+            <view class="currentTimeBar" style="width:{{currentWidth+'rpx'}}">
+                <!--小圆球 -->
+                <view class="audioCircle"></view>
+            </view>
+        </view>
+        <view>{{durationTime}}</view>
+    </view>
+
      <!-- 底部控制播放区域 -->
     <view class="musicControl">
-        <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
+        <text class="iconfont icon-{{pattern ? 'iconsMusicyemianbofangmoshiShuffle' : 'iconsMusicyemianbofangmoshiRepeat'}} " bindtap="handlePattern"></text>
 
         <text class="iconfont icon-shangyishou" data-set="pre" bindtap="handleSwitchMusic"></text>
 

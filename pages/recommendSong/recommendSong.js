@@ -39,16 +39,25 @@ Page({
     //获取列表数据
     this.getrecommendSong()
     //消息的订阅
-    PubSub.subscribe('switchMusic',(msg,type) => {
+    PubSub.subscribe('switchMusic',(msg,data) => {
+      console.log(data,"data数据")
+      let { type,pattern } = data
       let {recommendSongList,index} = this.data
-      if ( type == 'pre'){ //上一首
-        //循环播放
-        (index == 0) && (index = recommendSongList.length)
-        index -= 1
-      }else{ //下一首
-        (index == recommendSongList.length-1) && (index = -1)
-        index += 1
+      if ( pattern ){//随机模式
+        let random = Math.floor((Math.random()*recommendSongList.length-1)+1);
+        (random == index ) && ( random = Math.floor((Math.random()*recommendSongList.length-1)+1))
+        index = random
+      }else{
+        if ( type == 'pre'){ //上一首
+          //循环播放
+          (index == 0) && (index = recommendSongList.length)
+          index -= 1
+        }else{ //下一首
+          (index == recommendSongList.length-1) && (index = -1)
+          index += 1
+        }
       }
+    
       //更新状态
       this.setData({
         index
