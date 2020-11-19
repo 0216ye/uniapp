@@ -1,0 +1,54 @@
+<view class="searchContiner">
+    <!--头部区域 -->
+    <view class="header">
+        <view class="searchInput">
+            <text class="iconfont icon-search1 searchImg"></text>
+            <input type="text" value="{{searchContent}}"  placeholder="{{placeholder}}" placeholder-class="placeholder" bindinput="searchChange"/>
+            <text class="clear" hidden="{{!searchContent}}" bindtap="clearSearchContent">X</text>
+        </view>
+        <view class="cancel" bindtap="clearSearchContent">取消</view>
+    </view>
+    <!-- 搜索内容-->
+    <block wx:if="{{searchList.length}}">
+       
+        <view class="showSearchContent">
+            <!-- 头部-->
+            <view class="title">搜索内容:<text>{{searchContent}}</text></view>
+            <!-- 内容区-->
+            <view class="searchList">
+                <view class="searchItem" wx:for="{{searchList}}" wx:key="id" data-id ="{{item.id}}" bindtap="handleCLick">
+                    <text class="iconfont icon-search1 searchImg"></text>
+                    <text class="searchItemName">{{item.name}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+      
+
+    <block wx:else>
+        <!--历史记录 -->
+        <view class="historySearch" wx:if="{{searchHistory.length}}">
+            <view class="title">历史记录:</view>
+            <view class="historyItem" wx:for="{{searchHistory}}" wx:key="index">{{item}}</view>
+            <!-- 删除图标-->
+            <text class="iconfont icon-shanchu delete" bindtap="clearSearchHistory"></text>
+        </view>
+
+        <!--热歌榜 -->
+        <view class="hotContiner">
+            <!--头部 -->
+            <view class="hotTitle">热搜榜</view>
+
+            <view class="hotList">
+                <view class="hotItem" wx:for="{{hotList}}" wx:key="searchWord">
+                    <text style="font-weight:{{index < 3 ? 'bold' : ''}}" class="order">{{index + 1}}</text>
+                    <!--前三歌曲名加粗-->
+                    <text style="font-weight:{{index < 3 ? 'bold' : ''}}">{{item.searchWord}}</text>
+                    <image class="iconImg" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}" />
+                </view>
+            </view>
+
+        </view>
+    </block>
+      
+</view>

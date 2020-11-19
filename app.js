@@ -3,13 +3,14 @@ App({
   //创建小程序唯一实例的数据，全部页面都可以访问
   globalData:{
     musicId: '',
+    switchMusicId:'',
     ismusicPlay:false
   },
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-    
+  
   },
 
   /**

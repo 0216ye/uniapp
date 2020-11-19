@@ -40,7 +40,7 @@
     height: 598rpx;
 }
 .discAnimation{
-    animation: disc 6s linear infinite;
+    animation: disc 10s linear infinite;
     /*动画延迟一秒后执行*/
     animation-delay: 1s;
 }

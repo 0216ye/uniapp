@@ -36,7 +36,6 @@ Page({
     this.getSongDetail(musicId)
     //判断全局音乐是否与当前页面播 放的音乐一致
     if ( appInstance.globalData.ismusicPlay && appInstance.globalData.musicId == musicId ){
-      console.log('经历了')
       //将当前页面的音乐设置为播放状态
       this.setData({
         isPlay:true
@@ -49,8 +48,10 @@ Page({
     //监听背景音频播放/暂停/停止事件
     this.bgMusicManager.onPlay(() => {
       this.isPlayState(true)
-      //设置全局播放音乐的ID
+      //从data中获取音乐id，设置给全局播放音乐的ID
+      let musicId = this.data.musicId
       appInstance.globalData.musicId = musicId
+
     })
     this.bgMusicManager.onPause(() => {
       this.isPlayState(false)
@@ -84,13 +85,6 @@ Page({
         currentWidth
       })
     })
-
-
-
-    console.log(appInstance.globalData.musicId,'全局音乐Id')
-
-
-
   },
   /**
    *控制音乐状态的函数 
@@ -112,7 +106,8 @@ Page({
     if ( songDetaileData ){
       this.setData({
         song:songDetaileData.songs[0],
-        durationTime
+        durationTime,
+        musicId
       })
       //动态显示头部的名字
       wx.setNavigationBarTitle({
@@ -134,7 +129,8 @@ Page({
         let result = await request('/song/url',{id:musicId})
         musicLink = result.data[0].url
         this.setData({
-          musicLink
+          musicLink,
+          musicId
         })
       }
 
@@ -179,13 +175,7 @@ Page({
   getPubSubMusicId (){
     PubSub.subscribe('musicId',(msg,musicId) => {
 
-
-
-      //更新全局中的音乐Id
       appInstance.globalData.musicId = musicId
-
-
-
       //调用获取歌曲详细数据和音乐播放暂停的函数执行
       this.getSongDetail(musicId)
       this.songDetailIsPlay(true,musicId)

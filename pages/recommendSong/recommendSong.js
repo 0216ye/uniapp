@@ -1,6 +1,8 @@
 import PubSub from 'pubsub-js'
 
 import request from '../../utils/request'
+//创建小程序实例
+let appInstance = getApp();
 Page({
 
   /**
@@ -40,7 +42,6 @@ Page({
     this.getrecommendSong()
     //消息的订阅
     PubSub.subscribe('switchMusic',(msg,data) => {
-      console.log(data,"data数据")
       let { type,pattern } = data
       let {recommendSongList,index} = this.data
       if ( pattern ){//随机模式
@@ -63,6 +64,9 @@ Page({
         index
       })
       let musicId = recommendSongList[index].id
+
+      //更新全局中的音乐Id
+      appInstance.globalData.musicId = musicId
       //消息的发布，将音乐Id传回给songdetail页面
       PubSub.publish('musicId',musicId)
     })

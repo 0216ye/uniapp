@@ -1,0 +1,131 @@
+/*头部搜索区*/
+.searchContiner{
+    padding: 0 20rpx;
+}
+.header{
+    display: flex;
+    padding: 10rpx 0;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+.searchInput{
+    position: relative;
+    flex: 1;
+    background-color: rgba(237, 237, 237, 0.3);
+    border-radius: 30rpx;
+}
+.searchInput input{
+    font-size: 22rpx;
+    margin-left: 50rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+.searchInput .clear{
+    position: absolute;
+    z-index: 10;
+    right: 30rpx;
+    top: 0;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 22rpx;
+
+}
+.cancel{
+    width: 100rpx;
+    text-align: center;
+}
+.searchImg{
+    position: absolute;
+    left: 15rpx;
+}
+.placeholder{
+    font-size: 24rpx;
+}
+
+/*搜索内容展示区域*/
+.showSearchContent .title{
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 26rpx;
+    color: #d43c33;
+    border-bottom: 1px solid #fc928c;
+}
+.showSearchContent .title text{
+    font-size: 24rpx;
+    color: rgba(61, 59, 59, 0.815);
+}
+.searchItem{
+    display: flex;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.searchItem .searchImg{
+    width: 40rpx;
+    color: rgb(148, 126, 126);
+}
+.searchItem .searchItemName{
+    flex: 1;
+    margin-left: 50rpx;
+    border-bottom: 1px solid #eee;
+    font-size: 24rpx;
+    color: rgb(148, 126, 126);
+}
+
+/*历史记录区域*/
+.historySearch{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    color: rgb(148, 126, 126);
+
+}
+.historySearch .title{
+    margin-right: 10rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+.historySearch .historyItem{
+    margin-right: 20rpx;
+    margin-bottom: 10rpx;
+    padding: 2rpx 25rpx;
+    border-radius: 30rpx;
+    background-color: #eee;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 24rpx;
+}
+..historySearch .delete{
+    position: absolute;
+    margin-bottom: 10rpx;
+    right: 15rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 36rpx;
+}
+
+/*热搜榜区域*/
+.hotTitle{
+    font-size: 30rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-bottom: 1rpx solid #eee;   
+    font-weight: bold;
+}
+.hotList{
+    display:flex;
+    flex-wrap: wrap;
+    font-size: 22rpx;
+}
+.hotItem{
+    width: 50%;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+.order{
+    margin-right: 10rpx;
+}
+.hotItem .iconImg{
+    width: 30rpx;
+    height: 20rpx;
+    margin-left: 10rpx;
+}
