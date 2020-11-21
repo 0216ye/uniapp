@@ -25,6 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     //获取当前歌曲的id
     let musicId = options.id
     this.setData({
@@ -128,6 +129,14 @@ Page({
         //获取音乐的地址
         let result = await request('/song/url',{id:musicId})
         musicLink = result.data[0].url
+        //返回的数据没有音乐播放链接
+        if ( !musicLink ){
+          wx.showToast({
+            title: '获取资源失败!',
+            icon: 'none',
+          })
+          return
+        }
         this.setData({
           musicLink,
           musicId

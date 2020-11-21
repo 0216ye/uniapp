@@ -17,10 +17,26 @@ Page({
     //发送请求，获取banner轮播图信息&歌曲添加信息,使用await等待Promise返回成功的状态数据
     let bannerList = await request('/banner',{type:2})
     let recommendList = await request('/personalized',{limit:18})
+    if ( !bannerList || !recommendList ){
+      wx.showToast({
+        title: '获取资源失败!',
+        icon: 'none',
+      })
+      return
+    }
+
+
     let count = 0
     let resultArr = []
     while (count < 5) {
       let topListData =   await request('/top/list',{idx:count++})
+      if ( !topListData ){
+        wx.showToast({
+          title: '获取资源失败!',
+          icon: 'none',
+        })
+        return
+      }
       // 获取单个排行榜所需的数据
       let topListItem = {name:topListData.playlist.name,tracks:topListData.playlist.tracks.slice(0,3)}
       resultArr.push(topListItem)

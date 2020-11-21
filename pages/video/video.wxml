@@ -2,7 +2,7 @@
     <!--头部导航-->
     <view class="header">
         <image src="/static/images/video/video.jpg" />
-        <view class="search">
+        <view class="search" bindtap="toSearchPage">
             搜索音乐
         </view>
         <image src="/static/images/logo.png" />

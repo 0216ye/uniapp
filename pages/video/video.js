@@ -17,16 +17,22 @@ Page({
    */
   async getVideoGroupListData (){
     let videoGroupListData = await request('/video/group/list')
-    //获取前15个对象文本数据
-    let videoGroupList = videoGroupListData.data.slice(0,14)
-    if ( videoGroupList ){
-      this.setData({
-        videoGroupList,
-        //初始化第一个文本选中
-        navId:videoGroupList[0].id
+    if ( !videoGroupListData ){
+      wx.showToast({
+        title: '获取资源失败!',
+        icon: 'none',
       })
+      return
     }
 
+    //获取前15个对象文本数据
+    let videoGroupList = videoGroupListData.data.slice(0,14)
+
+    this.setData({
+      videoGroupList,
+      //初始化第一个文本选中
+      navId:videoGroupList[0].id
+    })
     this.getVideoList(this.data.navId)
   },
  
@@ -53,6 +59,14 @@ Page({
    */
   async getVideoList (id){
     let viodeListData = await request('/video/group',{id,isLogin:true})
+    if ( !viodeListData ){
+      wx.showToast({
+        title: '获取资源失败!',
+        icon: 'none',
+      })
+      return
+    }
+
     //清除loading效果
     wx.hideLoading()
     let index = 0
@@ -120,7 +134,7 @@ Page({
   },
 
   /**
-   * 视频播放进度条结束
+   * 视频播放 进度条结束
    */
   handleEnd ( event ){
     let { videoUpdateTiem } = this.data
@@ -167,6 +181,15 @@ Page({
   },
 
 
+  /**
+   * 
+   * 跳转到查询页面
+   */
+  toSearchPage (){
+    wx.navigateTo({
+      url:'/pages/search/search'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

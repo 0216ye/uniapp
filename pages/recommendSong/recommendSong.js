@@ -77,12 +77,16 @@ Page({
    */ 
   async getrecommendSong (){
     let result = await request('/recommend/songs')
-    if ( result ){
-      this.setData({
-        recommendSongList:result.recommend
+    if ( !result ){
+      wx.showToast({
+        title: '获取资源失败!',
+        icon: 'none',
       })
-    } 
-
+      return
+    }
+    this.setData({
+      recommendSongList:result.recommend
+    })
   },
 
   //点击每条歌曲数据时进行跳转
@@ -94,6 +98,7 @@ Page({
       index
     })
 
+    //路由传参数给sonDetail页面
     wx.navigateTo({
       url: '/pages/songDetail/songDetail?id='+song.id,
     });

@@ -33,13 +33,20 @@ Page({
   async getSearchData (){
     let placeData = await request('/search/default')
     let hotListData = await request('/search/hot/detail')
-    if ( placeData && hotListData){
-      this.setData({
-        //更新输入框默认内容和热歌榜数据
-        placeholder:placeData.data.showKeyword,
-        hotList:hotListData.data
+    //获取失败，给用户提示
+    if ( !placeData || !hotListData){
+      wx.showToast({
+        title: '获取资源失败!',
+        icon: 'none',
       })
+      return
     }
+    this.setData({
+      //更新输入框默认内容和热歌榜数据
+      placeholder:placeData.data.showKeyword,
+      hotList:hotListData.data
+    })
+    
   },
 
   /**
@@ -73,30 +80,37 @@ Page({
       setTimeout(async () => {
         //发送请求，获取模糊查询内容
         let searchListData = await request('/search',{keywords,limit:10})
-        if ( searchListData ){
-          //查询历史记录中存在与当前查询的一样，删除它
-          if ( searchHistory.indexOf(keywords) !== -1){
-            searchHistory.splice(searchHistory.indexOf(keywords),1);
-          }
-          //重新将它添加到数组第一位
-          searchHistory.unshift(keywords);
-
-          this.setData({
-            searchList:searchListData.result.songs,
-            searchHistory
+        if ( !searchListData ){
+          wx.showToast({
+            title: '获取资源失败!',
+            icon: 'none',
           })
-
-          //将查询历史保存到本地
-          wx.setStorageSync('searchList', searchHistory);
+          return
         }
+        //查询历史记录中存在与当前查询的一样，删除它
+        if ( searchHistory.indexOf(keywords) !== -1){
+          searchHistory.splice(searchHistory.indexOf(keywords),1);
+        }
+        //重新将它添加到数组第一位
+        searchHistory.unshift(keywords);
+        this.setData({
+          searchList:searchListData.result.songs,
+          searchHistory
+        })
+        //将查询历史保存到本地
+        wx.setStorageSync('searchList', searchHistory);
+        //重置节流标识
         isflag = true
       },300)
     }    
   },
   handleCLick(event){
     let id = event.currentTarget.dataset.id
-
-    console.log(id)
+  
+     //路由传参数给sonDetail页面
+     wx.navigateTo({
+      url: '/pages/songDetail/songDetail?id='+id,
+    });
   },
   /**
    *清空输入框查询内容 
