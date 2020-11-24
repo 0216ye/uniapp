@@ -55,7 +55,7 @@ Page({
    */
   handleToRecommendSong (){
     wx.navigateTo({
-      url:'/pages/recommendSong/recommendSong'
+      url:'/songPage/pages/recommendSong/recommendSong'
     })
   },
   /**

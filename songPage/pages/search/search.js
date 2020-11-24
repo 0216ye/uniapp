@@ -1,4 +1,4 @@
-import request from '../../utils/request'
+import request from '../../../utils/request'
 let isflag = true //用于函数节流
 Page({
 
@@ -109,7 +109,7 @@ Page({
   
      //路由传参数给sonDetail页面
      wx.navigateTo({
-      url: '/pages/songDetail/songDetail?id='+id,
+      url: '/songPage/pages/songDetail/songDetail?id='+id,
     });
   },
   /**

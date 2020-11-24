@@ -2,7 +2,7 @@ import moment from 'moment'
 
 import PubSub from 'pubsub-js'
 
-import request from '../../utils/request'
+import request from '../../../utils/request'
 //创建小程序实例
 let appInstance = getApp();
 Page({

@@ -187,7 +187,7 @@ Page({
    */
   toSearchPage (){
     wx.navigateTo({
-      url:'/pages/search/search'
+      url:'/songPage/pages/search/search'
     })
   },
   /**

@@ -1,0 +1,4 @@
+<view>
+    <!-- 获取用户唯一的openId-->
+    <button bindtap="handleGetOpenId">获取用户Id</button>    
+</view>

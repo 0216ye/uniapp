@@ -1,12 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail",
     "pages/video/video",
     "pages/profile/profile",
     "pages/login/login",
-    "pages/search/search"
+    "pages/other/other"
   ],
   "window": {
     "navigationBarBackgroundColor": "#d43c33",
@@ -40,6 +38,16 @@
   },
   "requiredBackgroundModes": [
     "audio"
+  ],
+  "subpackages":[
+    {
+      "root":"songPage",
+      "pages":[
+        "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail",
+        "pages/search/search"
+      ]
+    }
   ],
   "sitemapLocation": "sitemap80.json"
 }

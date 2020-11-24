@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js'
 
-import request from '../../utils/request'
+import request from '../../../utils/request'
 //创建小程序实例
 let appInstance = getApp();
 Page({
@@ -29,7 +29,7 @@ Page({
         success(){
           // 跳转至登录界面
           wx.reLaunch({
-            url: '/pages/login/login'
+            url: '../../../pages/login/login'
           })
         }
       })
@@ -100,7 +100,7 @@ Page({
 
     //路由传参数给sonDetail页面
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?id='+song.id,
+      url: '/songPage/pages/songDetail/songDetail?id='+song.id,
     });
       
   },
