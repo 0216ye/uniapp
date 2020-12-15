@@ -1,5 +1,5 @@
 import request from '../../../utils/request'
-let isflag = true //用于函数节流
+let isflag //用于函数防抖
 Page({
 
   /**
@@ -73,36 +73,31 @@ Page({
       })
       return
     }
-
-    //函数节流 : 指定一段时间内，多次触发,只会触发一次执行,
-    if ( isflag ){
-      isflag = false
-      setTimeout(async () => {
-        //发送请求，获取模糊查询内容
-        let searchListData = await request('/search',{keywords,limit:10})
-        if ( !searchListData ){
-          wx.showToast({
-            title: '获取资源失败!',
-            icon: 'none',
-          })
-          return
-        }
-        //查询历史记录中存在与当前查询的一样，删除它
-        if ( searchHistory.indexOf(keywords) !== -1){
-          searchHistory.splice(searchHistory.indexOf(keywords),1);
-        }
-        //重新将它添加到数组第一位
-        searchHistory.unshift(keywords);
-        this.setData({
-          searchList:searchListData.result.songs,
-          searchHistory
+    //函数防抖
+    clearTimeout(isflag)
+    isflag = setTimeout(async () => {
+      //发送请求，获取模糊查询内容
+      let searchListData = await request('/search',{keywords,limit:10})
+      if ( !searchListData ){
+        wx.showToast({
+          title: '获取资源失败!',
+          icon: 'none',
         })
-        //将查询历史保存到本地
-        wx.setStorageSync('searchList', searchHistory);
-        //重置节流标识
-        isflag = true
-      },300)
-    }    
+        return
+      }
+      //查询历史记录中存在与当前查询的一样，删除它
+      if ( searchHistory.indexOf(keywords) !== -1){
+        searchHistory.splice(searchHistory.indexOf(keywords),1);
+      }
+      //重新将它添加到数组第一位
+      searchHistory.unshift(keywords);
+      this.setData({
+        searchList:searchListData.result.songs,
+        searchHistory
+      })
+      //将查询历史保存到本地
+      wx.setStorageSync('searchList', searchHistory);
+    },300)
   },
   handleCLick(event){
     let id = event.currentTarget.dataset.id
